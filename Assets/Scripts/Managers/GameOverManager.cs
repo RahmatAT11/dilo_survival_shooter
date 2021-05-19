@@ -31,4 +31,9 @@ public class GameOverManager : MonoBehaviour
             }
         }
     }
+
+    public void ShowWarning()
+    {
+        anim.SetTrigger("Warning");
+    }
 }
