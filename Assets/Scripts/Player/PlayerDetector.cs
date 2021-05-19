@@ -10,7 +10,8 @@ public class PlayerDetector : MonoBehaviour
     {
         if (other.tag == "Enemy" && !other.isTrigger)
         {
-            gameOverManager.ShowWarning();
+            float enemyDistance = Vector3.Distance(transform.position, other.transform.position);
+            gameOverManager.ShowWarning(enemyDistance);
         }
     }
 }

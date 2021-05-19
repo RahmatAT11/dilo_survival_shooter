@@ -6016,6 +6016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c9e0011c2ed97428a4efc03b455359, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  warningText: {fileID: 101226076}
   playerHealth: {fileID: 1463046117}
   restartDelay: 5
 --- !u!95 &1310267802
