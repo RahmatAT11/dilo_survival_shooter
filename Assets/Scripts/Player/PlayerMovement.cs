@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody playerRigidbody;
     int floorMask;
     float camRayLength = 100f;
+    public bool isPowerUp = false;
 
     private void Awake()
     {
@@ -28,7 +30,14 @@ public class PlayerMovement : MonoBehaviour
     public void Move(float h, float v)
     {
         movement.Set(h, 0f, v);
-        movement = movement.normalized * speed * Time.deltaTime;
+        if (isPowerUp)
+        {
+            StartCoroutine(PowerUpSpeed(5f));
+        }
+        else
+        {
+            movement = movement.normalized * speed * Time.deltaTime;
+        }
         playerRigidbody.MovePosition(transform.position + movement);
     }
 
@@ -53,5 +62,16 @@ public class PlayerMovement : MonoBehaviour
     {
         bool walking = h != 0f || v != 0f;
         anim.SetBool("IsWalking", walking);
+    }
+
+    public IEnumerator PowerUpSpeed(float waitTime)
+    {
+        float speedOld = speed;
+        float speedNew = speedOld * 1.5f;
+        movement = movement.normalized * speedNew * Time.deltaTime;
+
+        yield return new WaitForSecondsRealtime(waitTime);
+
+        isPowerUp = false;
     }
 }

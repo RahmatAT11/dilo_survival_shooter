@@ -84,4 +84,28 @@ public class PlayerHealth : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+
+    public void Heal(Heal heal, int amount)
+    {
+        if (currentHealth == startingHealth)
+        {
+            return;
+        }
+
+        int tempCurrentHealth = currentHealth + amount;
+
+        if (tempCurrentHealth >= startingHealth)
+        {
+            currentHealth = startingHealth;
+        }
+        else
+        {
+
+            currentHealth += amount;
+        }
+
+        healthSlider.value = currentHealth;
+
+        Destroy(heal.gameObject);
+    }
 }
